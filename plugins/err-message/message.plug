@@ -1,0 +1,9 @@
+[Core]
+Name = Message
+Module = message
+
+[Documentation]
+Description = Message Callback
+
+[Python]
+Version = 3
