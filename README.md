@@ -11,7 +11,7 @@ Telegram Bot for oNsemy
 
 # Features
 
-* '아무나 이겨라' (about Politics)
+* '아무나 이겨라' (talking about Politics)
 
 # Working Features
 
