@@ -7,14 +7,12 @@ class Message(BotPlugin):
     Feel free to tweak me to experiment with Errbot.
     You can find me in your init directory in the subdirectory plugins.
     """
-
-    dataList = []
+    _data_list = list()
 
     def activate(self):
         with open('./plugins/err-message/win_whitelist.txt', 'r') as f:
-            dataList = f.read().splitlines()
-        self.log.info(dataList)
-        super().activate()
+            self._data_list = f.read().splitlines()
+        self.log.info(self._data_list)
 
     @botcmd  # flags a command
     def callback_message(self, mess):  # a command callable with !tryme
@@ -23,8 +21,9 @@ class Message(BotPlugin):
         Feel free to tweak me to experiment with Errbot.
         You can find me in your init directory in the subdirectory plugins.
         """
-        self.log.info(dataList)
-        for data in dataList:
+        self.log.info('it is work?')
+        self.log.info(self._data_list)
+        for data in self._data_list:
             self.log.info('white data: ' + data)
             if mess.body.find(data) != -1:
                 self.send(mess.to, "아무나 이겨라")
