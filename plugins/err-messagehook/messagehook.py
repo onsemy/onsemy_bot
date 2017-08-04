@@ -68,6 +68,11 @@ class MessageHook(BotPlugin):
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
             return
 
+        # feature - 공유
+        if mess.body.find('공유') != -1:
+            self.send_stream_request(send_id, open(os.getcwd() + '/resources/0u.jpg', 'rb'), name = '0u.jpg', stream_type = 'photo')
+            return
+
         # feature - Politics Talk
         for data in self._data_list:
             if mess.body.find(data) != -1:
