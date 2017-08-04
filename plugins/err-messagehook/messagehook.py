@@ -11,25 +11,32 @@ class MessageHook(BotPlugin):
     You can find me in your init directory in the subdirectory plugins.
     """
     _data_list = list()
+    _send_group_list = list()
 
     def nesi_timer(self):
         now = datetime.datetime.now();
         if now.minute == 0:
             if now.hour == 4 or now.hour == 16:
-                for room in self.rooms():
-                    self.send_stream_request(room, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
+                for data in self._send_group_list:
+                    self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
             else:
-                for room in self.rooms():
-                    self.send(room, str(now.hour) + '시에양-!')
+                for data in self._send_group_list:
+                    self.send(self.build_identifier(data), str(now.hour) + '시에양-!')
         self.log.info('타이머는 돌고있다!')
 
-        for room in self.rooms():
-            self.send(room, '시간 테스또: ' + str(now))
+        for data in self._send_group_list:
+            self.send(self.build_identifier(data), '시간 테스또: ' + str(now))
 
     def activate(self):
         ### feature - Prepare Politics Talk
         with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
             self._data_list = f.read().splitlines()
+            f.close()
+        #####
+
+        ### feature - Prepare nesi timer
+        with open('./plugins/err-messagehook/nesi_list.txt', 'r') as f:
+            self._send_group_list = f.read().splitlines()
             f.close()
         #####
 
