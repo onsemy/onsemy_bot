@@ -24,9 +24,6 @@ class MessageHook(BotPlugin):
                     self.send(self.build_identifier(data), str(now.hour) + '시에양-!')
         self.log.info('타이머는 돌고있다!')
 
-        for data in self._send_group_list:
-            self.send(self.build_identifier(data), '시간 테스또: ' + str(now))
-
     def activate(self):
         ### feature - Prepare Politics Talk
         with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
