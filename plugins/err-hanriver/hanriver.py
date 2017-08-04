@@ -16,7 +16,7 @@ class HanRiver(BotPlugin):
         find_idx = content.find('<td>')
         content = content[find_idx:]
         find_idx = content.find('</td>')
-        content = content[:find_idx]
+        content = content[4:find_idx]
 
         return content
 
