@@ -21,7 +21,10 @@ class HanRiver(BotPlugin):
         return content
 
     def callback_message(self, mess):
-        if mess.body.find('한강') != -1:
+        if mess.body.find('한강') != -1 or \
+                mess.body.find('자살') != -1 or \
+                mess.body.find('주식') != -1 or \
+                mess.body.find('부동산') != -1:
             result = self.temp_request()
 
             target = mess.to
