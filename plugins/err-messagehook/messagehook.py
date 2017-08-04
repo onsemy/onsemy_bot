@@ -9,11 +9,11 @@ class MessageHook(BotPlugin):
     """
     _data_list = list()
 
-    # def activate(self):
+    def activate(self):
     #     with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
     #         self._data_list = f.read().splitlines()
     #         f.close()
-    #     self.log.info(self._data_list)
+        self.log.info(self._data_list)
 
     def callback_message(self, mess):  # a command callable with !tryme
         """
