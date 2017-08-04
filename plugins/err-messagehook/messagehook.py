@@ -79,6 +79,7 @@ class MessageHook(BotPlugin):
         # feature - 지름
         if mess.body.find('질러') != -1 or \
                 mess.body.find('질럿') != -1 or \
+                mess.body.find('질렀') != -1 or \
                 mess.body.find('지름') != -1:
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/buybuybuy.gif', 'rb'), name = 'buybuybuy.gif', stream_type = 'document')
             return
