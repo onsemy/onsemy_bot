@@ -14,7 +14,6 @@ class Message(BotPlugin):
             self._data_list = f.read().splitlines()
         self.log.info(self._data_list)
 
-    @botcmd  # flags a command
     def callback_message(self, mess):  # a command callable with !tryme
         """
         Execute to check if Errbot responds to command.
