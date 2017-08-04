@@ -1,7 +1,7 @@
 # coding: utf-8
 from errbot import BotPlugin, botcmd
 
-class Message(BotPlugin):
+class MessageHook(BotPlugin):
     """
     This is a very basic plugin to try out your new installation and get you started.
     Feel free to tweak me to experiment with Errbot.
@@ -10,7 +10,7 @@ class Message(BotPlugin):
     _data_list = list()
 
     def activate(self):
-        with open('./plugins/err-message/win_whitelist.txt', 'r') as f:
+        with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
             self._data_list = f.read().splitlines()
         self.log.info(self._data_list)
 

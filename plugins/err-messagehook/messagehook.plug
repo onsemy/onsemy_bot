@@ -1,6 +1,6 @@
 [Core]
-Name = Message
-Module = message
+Name = MessageHook
+Module = messagehook
 
 [Documentation]
 Description = Message Callback
