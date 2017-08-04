@@ -59,7 +59,10 @@ class MessageHook(BotPlugin):
             return
 
         # feature - 퇴근 (어딜가)
-        if mess.body.find('퇴근') != -1:
+        if mess.body.find('퇴근') != -1 \
+                or mess.body.find('자러') != -1 \
+                or mess.body.find('자야') != -1 \
+                or mess.body.find('잔다') != -1:
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/where_you_go.jpg', 'rb'), name = 'where_you_go.jpg', stream_type = 'photo')
             return
 
