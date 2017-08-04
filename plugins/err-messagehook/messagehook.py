@@ -43,7 +43,7 @@ class MessageHook(BotPlugin):
             return
 
         # feature - 네시 (어딜가)
-        if mess.body.find('네시') != -1 or mess.body.find('4시'):
+        if mess.body.find('네시') != -1 or mess.body.find('4시') != -1:
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
             return
 
