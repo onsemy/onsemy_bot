@@ -21,7 +21,7 @@ class HanRiver(BotPlugin):
         return content
 
     def callback_message(self, mess):
-        if mess.body.find('한강물') != -1:
+        if mess.body.find('한강') != -1:
             result = self.temp_request()
 
             target = mess.to
