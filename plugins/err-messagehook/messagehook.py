@@ -1,4 +1,6 @@
 # coding: utf-8
+import os
+
 from errbot import BotPlugin, botcmd
 
 class MessageHook(BotPlugin):
@@ -15,7 +17,7 @@ class MessageHook(BotPlugin):
             self._data_list = f.read().splitlines()
             f.close()
         #####
-        
+
         super().activate()
 
     def callback_message(self, mess):  # a command callable with !tryme
