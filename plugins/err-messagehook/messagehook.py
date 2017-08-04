@@ -10,10 +10,12 @@ class MessageHook(BotPlugin):
     _data_list = list()
 
     def activate(self):
+        ### feature - Prepare Politics Talk
         with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
             self._data_list = f.read().splitlines()
             f.close()
-        self.log.info(self._data_list)
+        #####
+        
         super().activate()
 
     def callback_message(self, mess):  # a command callable with !tryme
@@ -22,15 +24,19 @@ class MessageHook(BotPlugin):
         Feel free to tweak me to experiment with Errbot.
         You can find me in your init directory in the subdirectory plugins.
         """
-        self.log.info('it is work?')
-        self.log.info(self._data_list)
+
+        # set send target
+        send_id = mess.to
+        if mess.to == self.bot_identifier:
+            send_id = mess.frm
+
+        # feature - ~해줘 (feat. 블랙워그레이몬)
+        if mess.body.find('해줘') != -1:
+            stream = self.send_stream_request(send_id, open(os.getcwd() + './resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
+            return
+
+        # feature - Politics Talk
         for data in self._data_list:
-            self.log.info('white data: ' + data)
             if mess.body.find(data) != -1:
-                send_id = mess.to
-
-                if mess.to == self.bot_identifier:
-                    send_id = mess.frm
-
                 self.send(send_id, "아무나 이겨라")
                 return # only once say
