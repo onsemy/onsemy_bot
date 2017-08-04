@@ -33,8 +33,13 @@ class MessageHook(BotPlugin):
             send_id = mess.frm
 
         # feature - ~해줘 (feat. 블랙워그레이몬)
-        if mess.body.find('해줘') != -1:
-            stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
+        if mess.body.find('해줘') != -1 or mess.body.find('해줭') != -1 or mess.body.find('부탁') != -1:
+            self.send_stream_request(send_id, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
+            return
+
+        # feature - 퇴근 (어딜가)
+        if mess.body.find('퇴근') != -1:
+            self.send_stream_request(send_id, open(os.getcwd() + '/resources/where_you_go.jpg', 'rb'), name = 'where_you_go.jpg', stream_type = 'photo')
             return
 
         # feature - Politics Talk
