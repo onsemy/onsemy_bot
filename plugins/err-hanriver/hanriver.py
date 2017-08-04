@@ -28,4 +28,4 @@ class HanRiver(BotPlugin):
             if mess.to == self.bot_identifier:
                 target = mess.frm
 
-            self.send(mess.to, "지금 한강물 " + result + "도야")                
+            self.send(target, "지금 한강물 " + result + "도야")                
