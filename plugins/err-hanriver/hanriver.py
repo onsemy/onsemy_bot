@@ -3,4 +3,5 @@ from errbot import BotPlugin, botcmd
 
 class HanRiver(BotPlugin):
     def callback_message(self, mess):
-        self.send(mess.to, "아직 준비중이에양...")
+        if mess.body.find('한강물') != -1:
+            self.send(mess.to, "아직 준비중이에양...")
