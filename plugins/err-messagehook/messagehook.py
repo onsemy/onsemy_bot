@@ -1,5 +1,6 @@
 # coding: utf-8
 import os
+import datetime
 
 from errbot import BotPlugin, botcmd
 
@@ -11,12 +12,25 @@ class MessageHook(BotPlugin):
     """
     _data_list = list()
 
+    def nesi_timer(self):
+        now = datetime.datetime.now();
+        if now.minute == 0:
+            if now.hour == 4 or now.hour == 16:
+                for room in self.rooms():
+                    self.send_stream_request(room, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
+            else:
+                for room in self.rooms():
+                    self.send(room, str(now.hour) + '시에양-!')
+        self.log.info('타이머는 돌고있다!')
+
     def activate(self):
         ### feature - Prepare Politics Talk
         with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
             self._data_list = f.read().splitlines()
             f.close()
         #####
+
+        self.start_poller(60, self.nesi_timer)
 
         super().activate()
 
