@@ -19,7 +19,7 @@ class MessageHook(BotPlugin):
             if now.hour == 4 or now.hour == 16:
                 for data in self._send_group_list:
                     self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
-            else:
+            elif now.hour > 6 and now.hour < 23:
                 for data in self._send_group_list:
                     self.send(self.build_identifier(data), str(now.hour) + '시에양-!')
         self.log.info('타이머는 돌고있다!')
@@ -59,7 +59,10 @@ class MessageHook(BotPlugin):
             return
 
         # feature - 퇴근 (어딜가)
-        if mess.body.find('퇴근') != -1:
+        if mess.body.find('퇴근') != -1 \
+                or mess.body.find('자러') != -1 \
+                or mess.body.find('자야') != -1 \
+                or mess.body.find('잔다') != -1:
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/where_you_go.jpg', 'rb'), name = 'where_you_go.jpg', stream_type = 'photo')
             return
 
