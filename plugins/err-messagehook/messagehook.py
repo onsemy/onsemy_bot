@@ -34,7 +34,7 @@ class MessageHook(BotPlugin):
 
         # feature - ~해줘 (feat. 블랙워그레이몬)
         if mess.body.find('해줘') != -1:
-            stream = self.send_stream_request(send_id, open(os.getcwd() + './resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
+            stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
             return
 
         # feature - Politics Talk
