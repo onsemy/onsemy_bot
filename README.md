@@ -45,6 +45,7 @@ CHATROOM_ID2
 * HanRiver Temperature
 * '~해줘' (feat. 블랙워그레이몬)
 * '공유' (feat. 공유)
+* '퇴근하게?' (feat. 코딩해야지?)
 * Clock Notification (+Do not disturb)
 
 # Working Features
