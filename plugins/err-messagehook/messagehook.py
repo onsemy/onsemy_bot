@@ -27,5 +27,10 @@ class MessageHook(BotPlugin):
         for data in self._data_list:
             self.log.info('white data: ' + data)
             if mess.body.find(data) != -1:
-                self.send(mess.to, "아무나 이겨라")
-                return
+                send_id = mess.to
+
+                if mess.to == self.bot_identifier:
+                    send_id = mess.frm
+
+                self.send(send_id, "아무나 이겨라")
+                return # only once say
