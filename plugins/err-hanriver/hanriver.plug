@@ -1,0 +1,9 @@
+[Core]
+Name = HanRiver
+Module = hanriver
+
+[Documentation]
+Description = Han River's Temperature
+
+[Python]
+Version = 3
