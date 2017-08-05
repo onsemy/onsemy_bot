@@ -95,6 +95,7 @@ class MessageHook(BotPlugin):
                 mess.body.find('페도') != -1 or \
                 mess.body.find('로리') != -1 or \
                 mess.body.find('ㅍㅍㅅㅅ') != -1 or \
+                mess.body.find('하앍') != -1 or \
                 mess.body.find('헠헠') != -1 or \
                 mess.body.find('펔펔') != -1:
             self.send_stream_request(send_id, open(os.getcwd() + '/resources/yonom.png', 'rb'), name = 'yonom.png', stream_type = 'photo')
