@@ -47,6 +47,7 @@ CHATROOM_ID2
 * '공유' (feat. 공유)
 * '퇴근하게?' (feat. 코딩해야지?)
 * Clock Notification (+Do not disturb)
+* 지름 응원 기능
 
 # Working Features
 
