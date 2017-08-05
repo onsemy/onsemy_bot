@@ -38,7 +38,7 @@ class Ranking(BotPlugin):
     @botcmd  # flags a command
     def rank_and_paid(self, msg, args):  # a command callable with !tryme
         """
-        Android Top Selling Rank
+        Android Top Paid Rank
         """
         # TODO: http.get
         result = requests.get(url = self._GOOGLE_TOP_PAID_URL)
@@ -51,7 +51,7 @@ class Ranking(BotPlugin):
     @botcmd  # flags a command
     def rank_and_free(self, msg, args):  # a command callable with !tryme
         """
-        Android Top Selling Rank
+        Android Top Free Rank
         """
         # TODO: http.get
         result = requests.get(url = self._GOOGLE_TOP_FREE_URL)
