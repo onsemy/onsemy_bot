@@ -18,12 +18,12 @@ class Ranking(BotPlugin):
         # TODO: http.get
         result = requests.get(url = self._GOOGLE_TOP_SELL_URL)
         content = result.text
-        send_content = ''
+        send_content = 'Google Game Top 20\n'
 
         # TODO: pattern parsing
-        for num in range(1, 10):
+        for num in range(1, 20):
             content = content[(content.find('<img alt="') + 10):]
-            send_content += str(num) + '. ' + content[:content.find('"')] + '\n'
+            send_content += str(num) + '위 ' + content[:content.find('"')] + '\n'
 
         # TODO: sort
 
