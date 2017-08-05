@@ -15,10 +15,12 @@ class MessageHook(BotPlugin):
 
     def nesi_timer(self):
         now = datetime.datetime.now();
-        if now.minute == 0:
-            if now.hour != 16 and now.hour > 6 and now.hour < 23:
-                for data in self._send_group_list:
-                    self.send(self.build_identifier(data), str(now.hour) + '시에양-!')
+        
+        ### 정각 알림은 임시로 봉인
+        # if now.minute == 0:
+        #     if now.hour != 16 and now.hour > 6 and now.hour < 23:
+        #         for data in self._send_group_list:
+        #             self.send(self.build_identifier(data), str(now.hour) + '시에양-!')
 
         if now.minute == 4:
             if now.hour == 4 or now.hour == 16:
