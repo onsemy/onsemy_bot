@@ -49,9 +49,10 @@ CHATROOM_ID2
 * Clock Notification (+Do not disturb)
 * 지름 응원 기능
 * 포돌이
+* Android Game Ranking
 
 # Working Features
 
-* Android/iOS Game Ranking
+* iOS Game Ranking
 * Hidden Func...?
 * Misc.
