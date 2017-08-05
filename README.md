@@ -51,5 +51,6 @@ CHATROOM_ID2
 
 # Working Features
 
+* Android/iOS Game Ranking
 * Hidden Func...?
 * Misc.
