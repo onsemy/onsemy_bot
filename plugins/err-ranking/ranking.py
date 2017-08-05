@@ -1,5 +1,5 @@
+import requests
 from errbot import BotPlugin, botcmd
-
 
 class Ranking(BotPlugin):
     """
@@ -8,16 +8,24 @@ class Ranking(BotPlugin):
     You can find me in your init directory in the subdirectory plugins.
     """
 
+    _GOOGLE_TOP_SELL_URL = 'https://play.google.com/store/apps/category/GAME/collection/topgrossing'
+
     @botcmd  # flags a command
     def rank_and_sell(self, msg, args):  # a command callable with !tryme
         """
         Android Top Selling Rank
         """
         # TODO: http.get
+        result = requests.get(url = self._GOOGLE_TOP_SELL_URL)
+        content = result.text
+        send_content = ''
 
         # TODO: pattern parsing
+        for num in range(1, 10):
+            content = content[(content.find('<img alt="') + 10):]
+            send_content += str(num) + '. ' + content[:content.find('"')] + '\n'
 
         # TODO: sort
 
         # TODO: send
-        return 'It *works* !'  # This string format is markdown.
+        return send_content
