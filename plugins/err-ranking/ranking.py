@@ -21,7 +21,7 @@ class Ranking(BotPlugin):
         send_content = 'Google Game Top 20\n'
 
         # TODO: pattern parsing
-        for num in range(1, 20):
+        for num in range(1, 21):
             content = content[(content.find('<img alt="') + 10):]
             send_content += str(num) + '위 ' + content[:content.find('"')] + '\n'
 
