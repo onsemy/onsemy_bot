@@ -1,0 +1,9 @@
+[Core]
+Name = Ranking
+Module = ranking
+
+[Documentation]
+Description = Android/iOS Game Ranking Infomation
+
+[Python]
+Version = 3
