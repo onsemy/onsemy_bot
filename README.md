@@ -23,7 +23,7 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
 
 ## filter.txt (in `$BOT_HOME_DIR/plugins/err-messagehook`)
 
-```json
+```
 {
     "nesi_timer":[
         {
