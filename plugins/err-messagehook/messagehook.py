@@ -3,7 +3,6 @@ import os
 import datetime
 import random
 import json
-from pprint import pprint
 
 from errbot import BotPlugin, botcmd
 
@@ -96,54 +95,61 @@ class MessageHook(BotPlugin):
         # feature - ~해줘 (feat. 블랙워그레이몬)
         if self.message_filter(send_id, mess, 'onegai') == True:
             return
-        # if mess.body.find('해줘') != -1 or mess.body.find('해줭') != -1 or mess.body.find('부탁') != -1:
-        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
-        #     return
 
         # feature - 퇴근 (어딜가)
-        if mess.body.find('퇴근') != -1 \
-                or mess.body.find('자러') != -1 \
-                or mess.body.find('자야') != -1 \
-                or mess.body.find('잔다') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/where_you_go.jpg', 'rb'), name = 'where_you_go.jpg', stream_type = 'photo')
+        if self.message_filter(send_id, mess, 'run_list') == True:
             return
+        # if mess.body.find('퇴근') != -1 \
+        #         or mess.body.find('자러') != -1 \
+        #         or mess.body.find('자야') != -1 \
+        #         or mess.body.find('잔다') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/where_you_go.jpg', 'rb'), name = 'where_you_go.jpg', stream_type = 'photo')
+        #     return
 
-        # feature - 네시 (어딜가)
-        if mess.body.find('네시') != -1 or mess.body.find('4시') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
-            return
+        # # feature - 네시 (어딜가)
+        # if mess.body.find('네시') != -1 or mess.body.find('4시') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
+        #     return
 
         # feature - 공유
-        if mess.body.find('공유') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/0u.jpg', 'rb'), name = '0u.jpg', stream_type = 'photo')
+        if self.message_filter(send_id, mess, '0u') == True:
             return
+        # if mess.body.find('공유') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/0u.jpg', 'rb'), name = '0u.jpg', stream_type = 'photo')
+        #     return
 
         # feature - 지름
-        if mess.body.find('질러') != -1 or \
-                mess.body.find('질럿') != -1 or \
-                mess.body.find('질렀') != -1 or \
-                mess.body.find('지르') != -1 or \
-                mess.body.find('지름') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/buybuybuy.gif', 'rb'), name = 'buybuybuy.gif', stream_type = 'document')
+        if self.message_filter(send_id, mess, 'buy_list', stream_type = 'document') == True:
             return
+        # if mess.body.find('질러') != -1 or \
+        #         mess.body.find('질럿') != -1 or \
+        #         mess.body.find('질렀') != -1 or \
+        #         mess.body.find('지르') != -1 or \
+        #         mess.body.find('지름') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/buybuybuy.gif', 'rb'), name = 'buybuybuy.gif', stream_type = 'document')
+        #     return
 
         # feature - PODORI
-        if mess.body.find('신고') != -1 or \
-                mess.body.find('페도') != -1 or \
-                mess.body.find('로리') != -1 or \
-                mess.body.find('ㅍㅍㅅㅅ') != -1 or \
-                mess.body.find('하앍') != -1 or \
-                mess.body.find('헠헠') != -1 or \
-                mess.body.find('펔펔') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/yonom.png', 'rb'), name = 'yonom.png', stream_type = 'photo')
+        if self.message_filter(send_id, mess, 'podori') == True:
             return
+        # if mess.body.find('신고') != -1 or \
+        #         mess.body.find('페도') != -1 or \
+        #         mess.body.find('로리') != -1 or \
+        #         mess.body.find('ㅍㅍㅅㅅ') != -1 or \
+        #         mess.body.find('하앍') != -1 or \
+        #         mess.body.find('헠헠') != -1 or \
+        #         mess.body.find('펔펔') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/yonom.png', 'rb'), name = 'yonom.png', stream_type = 'photo')
+        #     return
 
-        if mess.body.find('철컹') != -1:
-            self.send_stream_request(send_id, open(os.getcwd() + '/resources/ckck.png', 'rb'), name = 'ckck.png', stream_type = 'photo')
+        if self.message_filter(send_id, mess, 'arrest') == True:
             return
+        # if mess.body.find('철컹') != -1:
+        #     self.send_stream_request(send_id, open(os.getcwd() + '/resources/ckck.png', 'rb'), name = 'ckck.png', stream_type = 'photo')
+        #     return
 
         # feature - Politics Talk
-        for data in self._data_list:
+        for data in self._data['win_whitelist']:
             if mess.body.find(data) != -1:
                 self.send(send_id, "아무나 이겨라")
                 return # only once say
