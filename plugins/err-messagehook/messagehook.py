@@ -48,13 +48,13 @@ class MessageHook(BotPlugin):
         특정 키워드를 판별하여 적절한 짤을 보내는 함수
         정의는 filter.json 에 되어있음
         """
-        for data in self._data[func_name]:
-            for word in data["filter"]:
-                if mess.body.find(word) != -1:
-                    file_count = len(data["file_name"])
-                    file_name = data["file_name"][random.randrange(0, file_count)]                    
-                    self.send_stream_request(send_id, open(os.getcwd() + '/resources/' + file_name, 'rb'), name = file_name, stream_type = stream_type)
-                    return True
+        data = self._data[func_name]
+        for word in data["filter"]:
+            if mess.body.find(word) != -1:
+                file_count = len(data["file_name"])
+                file_name = data["file_name"][random.randrange(0, file_count)]                    
+                self.send_stream_request(send_id, open(os.getcwd() + '/resources/' + file_name, 'rb'), name = file_name, stream_type = stream_type)
+                return True
 
         return False
 
