@@ -47,6 +47,7 @@ class MessageHook(BotPlugin):
         특정 키워드를 판별하여 적절한 짤을 보내는 함수
         정의는 filter.json 에 되어있음
         """
+        self.log.info("func_name: " + func_name)
         data = self._data[func_name]
         for word in data["filter"]:
             if mess.body.find(word) != -1:
@@ -92,8 +93,8 @@ class MessageHook(BotPlugin):
         if mess.to == self.bot_identifier:
             send_id = mess.frm
 
-        for filter in self._data["message_filter"]:
-            if self.message_filter(send_id, mess, filter["filter_name"]) == True:
+        for data in self._data["message_filter"]:
+            if self.message_filter(send_id, mess, data["filter_name"]) == True:
                 return
 
         # feature - Politics Talk
