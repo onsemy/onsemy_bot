@@ -15,6 +15,7 @@ class PluginExample(BotPlugin):
     @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
         self.send(self.build_identifier(self._user_id), 'Commit on %s!' % payload['repository']['name'],)
+        self.log.info('git pull start=== ' + os.getcwd())
         os.system('git pull')
         self.send(self.bot_identifier(), '/repos update')
         # for room in self.bot_config.CHATROOM_PRESENCE:
