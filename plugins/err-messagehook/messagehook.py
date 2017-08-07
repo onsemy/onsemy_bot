@@ -29,10 +29,10 @@ class MessageHook(BotPlugin):
                     if random.random() < 0.5:
                         self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
                     else:
-                        self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/naesi.jpg', 'rb'), name = 'naesi.jpg', stream_type = 'photo')
+                        self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/naesi.jpeg', 'rb'), name = 'naesi.jpg', stream_type = 'photo')
             if now.hour == 2 or now.hour == 14:
                 for data in self._send_group_list:
-                    self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/doosi.jpg', 'rb'), name = 'doosi.jpg', stream_type = 'photo')
+                    self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/doosi.jpeg', 'rb'), name = 'doosi.jpg', stream_type = 'photo')
 
         self.log.info('타이머는 돌고있다!')
 
