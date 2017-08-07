@@ -10,7 +10,7 @@ class PluginExample(BotPlugin):
 
         super().activate()
 
-    @webhook
+    @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
         for room in self.bot_config.CHATROOM_PRESENCE:
             self.send(
