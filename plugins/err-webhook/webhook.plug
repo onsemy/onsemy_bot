@@ -1,0 +1,9 @@
+[Core]
+Name = WebHook
+Module = webhook
+
+[Documentation]
+Description = Web Hook
+
+[Python]
+Version = 3
