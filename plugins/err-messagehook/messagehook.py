@@ -10,8 +10,6 @@ class MessageHook(BotPlugin):
     """
     메시지에서 적절한 짤방을 생산한다
     """
-    _data_list = list()
-    _send_group_list = list()
 
     def nesi_timer(self):
         now = datetime.datetime.now();
@@ -29,31 +27,19 @@ class MessageHook(BotPlugin):
                     file_name = data["file_name"][random.randrange(0, file_count)]
                     for group in self._data["group_list"]:
                         self.send_stream_request(self.build_identifier(group), open(os.getcwd() + '/resources/' + file_name, 'rb'), name = file_name, stream_type = 'photo')
-                    
-            # if now.hour == 4 or now.hour == 16:
-            #     for data in self._send_group_list:
-            #         if random.random() < 0.5:
-            #             self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/nesi.jpg', 'rb'), name = 'nesi.jpg', stream_type = 'photo')
-            #         else:
-            #             self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/naesi.jpeg', 'rb'), name = 'naesi.jpg', stream_type = 'photo')
-            # if now.hour == 2 or now.hour == 14:
-            #     for data in self._send_group_list:
-            #         self.send_stream_request(self.build_identifier(data), open(os.getcwd() + '/resources/doosi.jpeg', 'rb'), name = 'doosi.jpg', stream_type = 'photo')
 
         self.log.info('타이머는 돌고있다!')
 
-    def message_filter(self, send_id, mess, func_name:str, stream_type:str = 'photo'):
+    def message_filter(self, send_id, mess, data):
         """
         특정 키워드를 판별하여 적절한 짤을 보내는 함수
         정의는 filter.json 에 되어있음
         """
-        self.log.info("func_name: " + func_name)
-        data = self._data[func_name]
         for word in data["filter"]:
             if mess.body.find(word) != -1:
                 file_count = len(data["file_name"])
                 file_name = data["file_name"][random.randrange(0, file_count)]                    
-                self.send_stream_request(send_id, open(os.getcwd() + '/resources/' + file_name, 'rb'), name = file_name, stream_type = stream_type)
+                self.send_stream_request(send_id, open(os.getcwd() + '/resources/' + file_name, 'rb'), name = file_name, stream_type = data["stream_type"])
                 return True
 
         return False
@@ -64,18 +50,6 @@ class MessageHook(BotPlugin):
             self._data = json.load(data_file)
             self.log.info(self._data)
             data_file.close()
-
-        # ### feature - Prepare Politics Talk
-        # with open('./plugins/err-messagehook/win_whitelist.txt', 'r') as f:
-        #     self._data_list = f.read().splitlines()
-        #     f.close()
-        # #####
-
-        # ### feature - Prepare nesi timer
-        # with open('./plugins/err-messagehook/nesi_list.txt', 'r') as f:
-        #     self._send_group_list = f.read().splitlines()
-        #     f.close()
-        # #####
 
         self.start_poller(60, self.nesi_timer)
 
@@ -94,7 +68,7 @@ class MessageHook(BotPlugin):
             send_id = mess.frm
 
         for data in self._data["message_filter"]:
-            if self.message_filter(send_id, mess, data["filter_name"]) == True:
+            if self.message_filter(send_id, mess, data) == True:
                 return
 
         # feature - Politics Talk
