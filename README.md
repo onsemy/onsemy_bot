@@ -21,7 +21,7 @@ BOT_HOME_DIR = r'/path/to/ERRBOT_ROOT' # Must Input Full Path
 BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
 ```
 
-## filter.txt (in `$BOT_HOME_DIR/plugins/err-messagehook`)
+## filter.json (in `$BOT_HOME_DIR/plugins/err-messagehook`)
 
 ```
 {
