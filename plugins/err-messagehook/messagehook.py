@@ -62,7 +62,7 @@ class MessageHook(BotPlugin):
         ### feature - filter load
         with open('./plugins/err-messagehook/filter.json') as data_file:
             self._data = json.load(data_file)
-            pprint(self._data)
+            self.log.info(self._data)
             data_file.close()
 
         # ### feature - Prepare Politics Talk
