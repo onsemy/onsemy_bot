@@ -68,8 +68,10 @@ class MessageHook(BotPlugin):
             send_id = mess.frm
 
         for data in self._data["message_filter"]:
-            if self.message_filter(send_id, mess, data) == True:
-                return
+            self.message_filter(send_id, mess, data)
+            # 봉인...
+            #if self.message_filter(send_id, mess, data) == True:
+            #    return
 
         # feature - Politics Talk
         for data in self._data['win_whitelist']:
