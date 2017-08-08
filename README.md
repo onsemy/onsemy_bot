@@ -92,5 +92,6 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
 
 * iOS Game Ranking
 * 행벅회로가도오옹~!
+* Private Notification
 * Hidden Func...?
 * Misc.
