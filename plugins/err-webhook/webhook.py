@@ -11,10 +11,8 @@ class WebHook(BotPlugin):
         if self._is_pushed == True:
             self._is_pushed = False
             sleep(3)
-            self.log.info('user_id: ' + str(self._user_id))
-            self.log.info('user_id: ' + str(self._user_id))
-            self.send(self.build_identifier(str(self._user_id)), 'Restarting bot!')
-            self.send(self.bot_identifier(), '/restart',)
+            self.send(self.build_identifier(self._user_id), 'Restarting bot!')
+            self.send(self.build_identifier(self._user_id), '/restart')
 
     def activate(self):
         with open('./plugins/err-webhook/settings.json', 'r') as d:
