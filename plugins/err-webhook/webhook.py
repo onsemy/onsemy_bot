@@ -11,7 +11,7 @@ class WebHook(BotPlugin):
     def refresher(self):
         if self._is_started == True:
             self._is_started = False
-            self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
+            self.send(self.build_identifier(self._user_id), 'Yes, your majesty!')
 
         if self._is_pushed == True:
             # self.stop_poller(self.refresher)
