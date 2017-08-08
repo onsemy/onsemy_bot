@@ -9,8 +9,9 @@ class WebHook(BotPlugin):
 
     def refresher(self):
         if self._is_pushed == True:
-            _is_pushed = False
+            self._is_pushed = False
             sleep(3)
+            self.log.info('user_id: ' + self._user_id)
             self.log.info('user_id: ' + self._user_id)
             self.send(self.build_identifier(self._user_id), 'Restarting bot!')
             self.send(self.bot_identifier(), '/restart',)
