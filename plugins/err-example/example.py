@@ -44,6 +44,7 @@ class Example(BotPlugin):
             else:
                 title = context[context.find(link_end_templ) + len(link_end_templ):context.find(a_tag_end_templ)]
             
-                self.send_card(title=title,
-                                link=link,
-                                to=send_id)
+            self.send(send_id, title + ' - ' + link)
+            # self.send_card(title=title,
+            #                 link=link,
+            #                 to=send_id)
