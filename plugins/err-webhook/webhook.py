@@ -6,6 +6,7 @@ from errbot import BotPlugin, webhook
 
 class WebHook(BotPlugin):
     _is_pushed = False
+    _is_started = True
 
     def refresher(self):
         if self._is_pushed == True:
@@ -14,6 +15,10 @@ class WebHook(BotPlugin):
             sleep(3)
             self.send(self.build_identifier(self._user_id), 'Restarting bot!')
             self.send(self.build_identifier(self._user_id), '/restart')
+
+        if self._is_started == True:
+            self._is_started = False
+            self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
 
     def activate(self):
         with open('./plugins/err-webhook/settings.json', 'r') as d:
@@ -25,8 +30,6 @@ class WebHook(BotPlugin):
 
         super().activate()
         
-        self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
-
     @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
         self.send(self.build_identifier(self._user_id), 'Commit on ' + payload['repository']['name'] + ' - ' + payload['compare'])
