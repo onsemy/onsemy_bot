@@ -29,6 +29,12 @@ class Example(BotPlugin):
         strong_begin_templ = "<strong>"
         strong_end_templ = "</strong>"
         a_tag_end_templ = "</a>"
+
+        # set send target
+        send_id = msg.to
+        if msg.to == self.bot_identifier:
+            send_id = msg.frm
+
         for best in range(1, 20):
             title = ""
             context = context[context.find(link_begin_templ) + len(link_begin_templ):]
@@ -40,4 +46,4 @@ class Example(BotPlugin):
             
                 self.send_card(title=title,
                                 link=link,
-                                to=msg.to)
+                                to=send_id)
