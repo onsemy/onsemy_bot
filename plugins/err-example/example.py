@@ -45,4 +45,4 @@ class Example(BotPlugin):
                                 link=link,
                                 # fields=(('First Key','Value1'), ('Second Key','Value2')),
                                 color='red',
-                                in_reply_to=msg.to)
+                                in_reply_to=msg)
