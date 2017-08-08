@@ -16,3 +16,15 @@ class Example(BotPlugin):
         You can find me in your init directory in the subdirectory plugins.
         """
         return 'It *works* !'  # This string format is markdown.
+
+    @botcmd
+    def hello_card(self, msg, args):
+        """Say a card in the chatroom."""
+        self.send_card(title='Title + Body',
+                       body='text body to put in the card',
+                       thumbnail='https://raw.githubusercontent.com/errbotio/errbot/master/docs/_static/errbot.png',
+                       image='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+                       link='http://www.google.com',
+                       fields=(('First Key','Value1'), ('Second Key','Value2')),
+                       color='red',
+                       in_reply_to=msg)
