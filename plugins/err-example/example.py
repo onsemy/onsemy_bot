@@ -1,3 +1,4 @@
+import requests
 from errbot import BotPlugin, botcmd
 
 
@@ -20,11 +21,28 @@ class Example(BotPlugin):
     @botcmd
     def hello_card(self, msg, args):
         """Say a card in the chatroom."""
-        self.send_card(title='Title + Body',
-                       body='text body to put in the card',
-                       thumbnail='https://raw.githubusercontent.com/errbotio/errbot/master/docs/_static/errbot.png',
-                       image='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-                       link='http://www.google.com',
-                       fields=(('First Key','Value1'), ('Second Key','Value2')),
-                       color='red',
-                       in_reply_to=msg)
+        result = requests.get(url = 'http://web.ruliweb.com/best/hit_history.htm')
+        context = result.text
+        context = context[context.find('right_best_list'):]
+        link_begin_templ = "<a class='txt_link' href='"
+        link_end_templ = "'>"
+        strong_begin_templ = "<strong>"
+        strong_end_templ = "</strong>"
+        a_tag_end_templ = "</a>"
+        for best in range(1, 20):
+            title = ""
+            context = context[context.find(link_begin_templ) + len(link_begin_templ):]
+            link = context[:context.find(link_end_templ)]
+            if context[:context.find(link_begin_templ)].find('<strong>') != -1:
+                title = context[context.find(strong_begin_templ) + len(strong_begin_templ):context.find(strong_end_templ)]
+            else:
+                title = context[context.find(link_end_templ) + len(link_end_templ):context.find(a_tag_end_templ)]
+            
+                self.send_card(title=title,
+                                # body='text body to put in the card',
+                                # thumbnail='https://raw.githubusercontent.com/errbotio/errbot/master/docs/_static/errbot.png',
+                                # image='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+                                link=link,
+                                # fields=(('First Key','Value1'), ('Second Key','Value2')),
+                                color='red',
+                                in_reply_to=msg.to)
