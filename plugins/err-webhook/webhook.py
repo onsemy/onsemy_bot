@@ -1,29 +1,37 @@
 # coding: utf-8
 import json
 import os
+from time import sleep
 from errbot import BotPlugin, webhook
 
-class PluginExample(BotPlugin):
+class WebHook(BotPlugin):
+    _is_pushed = False
+
+    def refresher(self):
+        if self._is_pushed == True:
+            sleep(3)
+            self.send(self.bot_identifier(), 'Restarting bot!',)
+            self.send(self.bot_identifier(), '/restart',)
+            _is_pushed = False
+
     def activate(self):
         with open('./plugins/err-webhook/settings.json', 'r') as d:
             jsonData = json.load(d)
             self._room_id = jsonData['room_id']
             self._user_id = jsonData['user_id']
 
+        self.start_poller(5, self.refresher)
+
         super().activate()
 
     @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
-        self.send(self.build_identifier(self._user_id), 'Commit on %s!' % payload['repository']['name'],)
+        self.send(self.build_identifier(self._user_id), 'Commit on ' + payload['repository']['name'] + ' - ' + payload['compare'])
         # self.log.info('git pull start=== ' + os.getcwd())
         os.system('git checkout master')
         os.system('git pull origin master')
-        self.send(self.bot_identifier(), '/repos update',)
-        # for room in self.bot_config.CHATROOM_PRESENCE:
-        #     self.send(
-        #         self.build_identifier(room),
-        #         'Commit on %s!' % payload['repository']['name'],
-        #     )
+        self.send(self.build_identifier(self._user_id), 'Request RESTART bot!')
+        self._is_pushed = True
 
     @webhook
     def say(self, request):
