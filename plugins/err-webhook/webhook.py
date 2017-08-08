@@ -21,10 +21,11 @@ class WebHook(BotPlugin):
             self._room_id = jsonData['room_id']
             self._user_id = jsonData['user_id']
 
-        self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
         self.start_poller(5, self.refresher)
 
         super().activate()
+        
+        self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
 
     @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
