@@ -39,10 +39,5 @@ class Example(BotPlugin):
                 title = context[context.find(link_end_templ) + len(link_end_templ):context.find(a_tag_end_templ)]
             
                 self.send_card(title=title,
-                                # body='text body to put in the card',
-                                # thumbnail='https://raw.githubusercontent.com/errbotio/errbot/master/docs/_static/errbot.png',
-                                # image='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
                                 link=link,
-                                # fields=(('First Key','Value1'), ('Second Key','Value2')),
-                                color='red',
-                                in_reply_to=msg)
+                                to=msg.to)
