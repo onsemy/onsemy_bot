@@ -24,7 +24,7 @@ class RuliRight(BotPlugin):
         if msg.to == self.bot_identifier:
             send_id = msg.frm
 
-        send_content = "== 근근웹 오른쪽 베스트 20 ==\n"
+        send_content = "[근근웹 오른쪽 베스트 20]\n"
         for best in range(1, 20):
             title = ""
             context = context[context.find(link_begin_templ) + len(link_begin_templ):]
@@ -35,5 +35,9 @@ class RuliRight(BotPlugin):
                 title = context[context.find(link_end_templ) + len(link_end_templ):context.find(a_tag_end_templ)]
             
             send_content += '- ' + title + ' - ' + link + '\n'
+
+            if best % 10 == 9: # 두번에 걸쳐서 보내도록...
+                self.send(send_id, send_content)
+                send_content = ''
             
-        self.send(send_id, send_content)
+        # self.send(send_id, send_content)
