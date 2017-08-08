@@ -24,6 +24,7 @@ class RuliRight(BotPlugin):
         if msg.to == self.bot_identifier:
             send_id = msg.frm
 
+        send_content = "== 근근웹 오른쪽 베스트 20 ==\n"
         for best in range(1, 20):
             title = ""
             context = context[context.find(link_begin_templ) + len(link_begin_templ):]
@@ -33,4 +34,6 @@ class RuliRight(BotPlugin):
             else:
                 title = context[context.find(link_end_templ) + len(link_end_templ):context.find(a_tag_end_templ)]
             
-            self.send(send_id, title + ' - ' + link)
+            send_content += '- ' + title + ' - ' + link + '\n'
+            
+        self.send(send_id, send_content)
