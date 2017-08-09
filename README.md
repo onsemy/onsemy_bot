@@ -85,13 +85,16 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
 * Clock Notification (+Do not disturb)
 * 지름 응원 기능
 * 포돌이
-* 근근라이트
+* 근근황 
+  + 근근라이트
 * Android Game Ranking
 
 # Working Features
 
 * iOS Game Ranking
 * 행벅회로가도오옹~!
+* 근근황 
+  + 근근늬우스
 * Private Notification
 * Hidden Func...?
 * Misc.

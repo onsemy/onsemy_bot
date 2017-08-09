@@ -9,16 +9,17 @@ class WebHook(BotPlugin):
     _is_started = True
 
     def refresher(self):
+        if self._is_started == True:
+            self._is_started = False
+            self.send(self.build_identifier(self._user_id), 'Yes, your majesty!')
+
         if self._is_pushed == True:
             # self.stop_poller(self.refresher)
             self._is_pushed = False
+            self._is_started = True
             sleep(3)
             self.send(self.build_identifier(self._user_id), 'Restarting bot!')
             self.send(self.build_identifier(self._user_id), '/restart')
-
-        if self._is_started == True:
-            self._is_started = False
-            self.send(self.build_identifier(self._user_id), 'Hi! My Highness!')
 
     def activate(self):
         with open('./plugins/err-webhook/settings.json', 'r') as d:
