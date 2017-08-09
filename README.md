@@ -87,14 +87,14 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
 * 포돌이
 * 근근황 
   + 근근라이트
+  + 근근늬우스
 * Android Game Ranking
 
 # Working Features
 
 * iOS Game Ranking
 * 행벅회로가도오옹~!
-* 근근황 
-  + 근근늬우스
+* KBO Notification (KIA side)
 * Private Notification
 * Hidden Func...?
 * Misc.
