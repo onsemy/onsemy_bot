@@ -1,11 +1,41 @@
 import requests
 from errbot import BotPlugin, botcmd
 
-class RuliRight(BotPlugin):
+class Ruli(BotPlugin):
     """
-    루리웹 오른쪽
+    루리웹 각종 정보
     """
 
+    @botcmd
+    def ruliweb_news(self, msg, args):
+        """루리웹 뉴스"""
+        result = requests.get(url = 'http://bbs.ruliweb.com/news')
+        context = result.text
+        context = context[context.find('best_news_tab'):]
+        outer_tag = 'list tab_box_page dot'
+        item_start_tag = 'http://'
+        item_end_tag = '">'
+        title_end_tag = '</a>'
+        main_title = {0:'PC/온라인', 1:'콘솔', 2:'모바일'}
+
+        # set send target
+        send_id = msg.to
+        if msg.to == self.bot_identifier:
+            send_id = msg.frm
+
+        send_content = ''
+        for best in range(1, 31):
+            if best % 10 == 1:
+                send_content += '[' + main_title[best / 10] + ']\n'
+
+            link = context[context.find(item_start_tag):context.find(item_end_tag)]
+            sub_title = context[context.find(item_end_tag) + len(item_end_tag):context.find(title_end_tag)]
+            context = context[context.find(title_end_tag):]
+
+            send_content += '- ' + sub_title + ' - ' + link + '\n'
+            if best % 10 == 0:
+                self.send(send_id, send_content)                
+                send_content = ''
 
     @botcmd
     def ruliweb_right(self, msg, args):
