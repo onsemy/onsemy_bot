@@ -26,11 +26,12 @@ class Ruli(BotPlugin):
         send_content = ''
         for best in range(1, 31):
             if best % 10 == 1:
-                send_content += '[' + main_title[(int)(best / 10)] + ']\n'
+                send_content += '[' + main_title[(int)(best / 10)] + ']\n\n'
 
+            context = context[context.find(item_start_tag):]
             link = context[context.find(item_start_tag):context.find(item_end_tag)]
             sub_title = context[context.find(item_end_tag) + len(item_end_tag):context.find(title_end_tag)]
-            context = context[context.find(title_end_tag):]
+            # context = context[context.find(title_end_tag):]
 
             send_content += '- ' + sub_title + ' - ' + link + '\n'
             if best % 10 == 0:
