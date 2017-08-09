@@ -31,7 +31,7 @@ class Ruli(BotPlugin):
             context = context[context.find(item_start_tag):]
             link = context[context.find(item_start_tag):context.find(item_end_tag)]
             sub_title = context[context.find(item_end_tag) + len(item_end_tag):context.find(title_end_tag)]
-            # context = context[context.find(title_end_tag):]
+            context = context[context.find(title_end_tag):]
 
             send_content += '- ' + sub_title + ' - ' + link + '\n'
             if best % 10 == 0:
