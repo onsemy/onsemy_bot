@@ -1,9 +1,0 @@
-[Core]
-Name = RuliRight
-Module = ruliright
-
-[Documentation]
-Description = Ruliweb Right
-
-[Python]
-Version = 3

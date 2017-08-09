@@ -1,0 +1,9 @@
+[Core]
+Name = Ruli
+Module = ruli
+
+[Documentation]
+Description = Ruliweb Misc.
+
+[Python]
+Version = 3
