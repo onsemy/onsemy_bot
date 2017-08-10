@@ -21,6 +21,7 @@ class Torrent(BotPlugin):
             stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
             pass
 
+        self.log.info('args: ' + args)
         validations = ['http://', 'magnet:', 'https://', 'bc://bt/']
         for vali in validations:
             if not vali in args:
@@ -30,7 +31,7 @@ class Torrent(BotPlugin):
         params = {'urls':args}
         # headers = {multipart/form-data; boundary=---------------------------6688794727912}
         yield "Request Torrent Job!"
-        
+
         result = requests.post(bot_define.TORRENT_URL, params)
 
         if not result:
