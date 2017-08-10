@@ -16,7 +16,7 @@ class Torrent(BotPlugin):
         """
         url or magnet add (one by one)
         """
-        if msg.frm != bot_define.BOT_ADMIN_ID:
+        if msg.frm != self.build_identifier(bot_define.BOT_ADMIN_ID):
             # deny!
             stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
             pass
