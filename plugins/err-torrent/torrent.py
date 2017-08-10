@@ -38,7 +38,7 @@ class Torrent(BotPlugin):
 
         res = qb.login(bot_define.TORRENT_USER_NAME, bot_define.TORRENT_PASSWORD)
 
-        if not res:
+        if res:
             yield "Failed to Login"
             return
 
@@ -46,7 +46,7 @@ class Torrent(BotPlugin):
 
         res = qb.download_from_link(args)
         
-        if not res:
+        if res:
             yield "Something has wrong!"
             return
 
