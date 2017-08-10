@@ -16,15 +16,19 @@ class Torrent(BotPlugin):
         """
         url or magnet add (one by one)
         """
+        send_id = msg.to
+        if msg.to == self.bot_identifier:
+            send_id = msg.frm
+
         if msg.frm != self.build_identifier(bot_define.BOT_ADMIN_ID):
             # deny!
-            stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
+            stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
             return
 
         self.log.info('args: ' + args)
         validations = ['http://', 'magnet:', 'https://', 'bc://bt/']
         if all(not (val in args) for val in validations):
-            stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
+            stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
             return
 
         params = {'urls':args}
