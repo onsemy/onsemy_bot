@@ -1,0 +1,9 @@
+[Core]
+Name = Torrent
+Module = torrent
+
+[Documentation]
+Description = Torrent Job
+
+[Python]
+Version = 3
