@@ -33,7 +33,7 @@ class WebHook(BotPlugin):
         
     @webhook('/github/', form_param = 'payload')
     def notification(self, payload):
-        self.send(self.build_identifier(self._user_id), 'Commit on ' + payload['repository']['name'] + ' - ' + payload['compare'])
+        self.send(self.build_identifier(self._user_id), 'Commit on ' + payload['repository']['name'] + ' - ' + payload['compare'] + '\nCurrent Branch: ' + payload['ref'])
         # self.log.info('git pull start=== ' + os.getcwd())
         # os.system('git checkout master')
         os.system('git pull')
