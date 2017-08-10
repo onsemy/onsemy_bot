@@ -38,11 +38,11 @@ class Torrent(BotPlugin):
             yield "Failed to Login"
             return
 
-        params = {'urls':args}
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        params = {'Content-Type': 'application/x-www-form-urlencoded', 'urls': args}
+        # headers = {}
         yield "Request Torrent Job!"
 
-        result = requests.post(bot_define.TORRENT_URL + 'command/download', params, headers)
+        result = requests.post(bot_define.TORRENT_URL + 'command/download', params)
 
         if not result:
             yield "Something has wrong!"
