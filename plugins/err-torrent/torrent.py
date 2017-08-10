@@ -39,10 +39,10 @@ class Torrent(BotPlugin):
             return
 
         params = {'urls':args}
-        # headers = {multipart/form-data; boundary=---------------------------6688794727912}
+        headers = {'Content-Type': 'multipart/form-data; boundary=---------------------------6688794727912'}
         yield "Request Torrent Job!"
 
-        result = requests.post(bot_define.TORRENT_URL + 'command/download', params)
+        result = requests.post(bot_define.TORRENT_URL + 'command/download', params, headers)
 
         if not result:
             yield "Something has wrong!"
