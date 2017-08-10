@@ -27,7 +27,8 @@ class WebHook(BotPlugin):
             self._room_id = jsonData['room_id']
             self._user_id = jsonData['user_id']
 
-        self.start_poller(5, self.refresher)
+        self.send(self.build_identifier(self._user_id), 'Yes, your majesty!')
+        # self.start_poller(5, self.refresher)
 
         super().activate()
         
@@ -37,8 +38,8 @@ class WebHook(BotPlugin):
         # self.log.info('git pull start=== ' + os.getcwd())
         # os.system('git checkout master')
         os.system('git pull')
-        self.send(self.build_identifier(self._user_id), 'Request RESTART bot!')
-        self._is_pushed = True
+        self.send(self.build_identifier(self._user_id), 'Please order to /restart bot!')
+        # self._is_pushed = True
 
     @webhook
     def say(self, request):
