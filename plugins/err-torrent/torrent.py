@@ -19,14 +19,13 @@ class Torrent(BotPlugin):
         if msg.frm != self.build_identifier(bot_define.BOT_ADMIN_ID):
             # deny!
             stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/deny_new.jpg', 'rb'), name = 'deny_new.jpg', stream_type = 'photo')
-            pass
+            return
 
         self.log.info('args: ' + args)
         validations = ['http://', 'magnet:', 'https://', 'bc://bt/']
-        for vali in validations:
-            if not vali in args:
-                stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
-                pass
+        if all(not (val in args) for val in validations):
+            stream = self.send_stream_request(msg.to, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
+            return
 
         params = {'urls':args}
         # headers = {multipart/form-data; boundary=---------------------------6688794727912}
@@ -36,6 +35,6 @@ class Torrent(BotPlugin):
 
         if not result:
             yield "Something has wrong!"
-            pass
+            return
 
         yield "Result: " + result.status_code + " - " + result.reason
