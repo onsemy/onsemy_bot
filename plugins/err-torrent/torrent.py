@@ -31,11 +31,18 @@ class Torrent(BotPlugin):
             stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
             return
 
+        yield "Request Login"
+        params = {'username':bot_define.TORRENT_USER_NAME, 'password':bot_define.TORRENT_PASSWORD}
+        result = requests.post(bot_define.TORRENT_URL + 'login', params)
+        if not result:
+            yield "Failed to Login"
+            return
+
         params = {'urls':args}
         # headers = {multipart/form-data; boundary=---------------------------6688794727912}
         yield "Request Torrent Job!"
 
-        result = requests.post(bot_define.TORRENT_URL, params)
+        result = requests.post(bot_define.TORRENT_URL + 'command/download', params)
 
         if not result:
             yield "Something has wrong!"
