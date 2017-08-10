@@ -9,6 +9,7 @@ Telegram Bot for oNsemy
 * errbot
 * python-telegram-bot
 * requests
+* python-qbittorrent
 
 # Settings
 
@@ -89,6 +90,7 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
   + 근근라이트
   + 근근늬우스
 * Android Game Ranking
+* Torrent Job (only oNsemy)
 
 # Working Features
 
