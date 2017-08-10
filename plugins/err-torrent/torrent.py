@@ -4,6 +4,7 @@ import os
 import requests
 import bot_define
 from errbot import BotPlugin, botcmd
+from qbittorrent import Client
 
 
 class Torrent(BotPlugin):
@@ -31,22 +32,24 @@ class Torrent(BotPlugin):
             stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/nooo.gif', 'rb'), name = 'nooo.gif', stream_type = 'document')
             return
 
+        qb = Client(bot_define.TORRENT_URL)
+
         yield "Request Login"
-        params = {'username':bot_define.TORRENT_USER_NAME, 'password':bot_define.TORRENT_PASSWORD}
-        result = requests.post(bot_define.TORRENT_URL + 'login', params)
-        if not result:
+
+        res = qb.login(bot_define.TORRENT_USER_NAME, bot_define.TORRENT_PASSWORD)
+
+        if not res:
             yield "Failed to Login"
             return
 
-        params = {'urls':args}
-        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        # headers = {'Content-Type': 'multipart/form-data; boundary=---------------------------6688794727912'}
         yield "Request Torrent Job!"
-        result = None
-        result = requests.post(bot_define.TORRENT_URL + 'command/download', data=params, headers = headers)
 
-        if not result:
+        res = qb.download_from_link(args)
+        
+        if not res:
             yield "Something has wrong!"
             return
 
-        yield "Result: " + result.status_code + " - " + result.reason
+        stream = self.send_stream_request(send_id, open(os.getcwd() + '/resources/sloth.gif', 'rb'), name = 'sloth.gif', stream_type = 'document')
+        yield "Request Done."
+        qb.logout()
