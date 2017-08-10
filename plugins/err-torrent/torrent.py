@@ -30,5 +30,11 @@ class Torrent(BotPlugin):
         params = {'urls':args}
         # headers = {multipart/form-data; boundary=---------------------------6688794727912}
         yield "Request Torrent Job!"
+        
         result = requests.post(bot_define.TORRENT_URL, params)
+
+        if not result:
+            yield "Something has wrong!"
+            pass
+
         yield "Result: " + result.status_code + " - " + result.reason
