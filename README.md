@@ -1,6 +1,6 @@
 oNsemy Bot
 ===========
-Telegram Bot for oNsemy
+Telegram Bot for oNsemy. Based by [errbot](http://errbot.io)
 
 # Requirements
 
