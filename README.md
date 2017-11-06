@@ -6,10 +6,7 @@ Telegram Bot for oNsemy. Based by [errbot](http://errbot.io)
 
 * python 3.x+
 * pyenv + pyenv-virtualenv
-* errbot
-* python-telegram-bot
-* requests
-* python-qbittorrent
+* ```$ pip install -r pip_requirements.txt```
 
 # Settings
 
