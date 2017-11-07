@@ -13,8 +13,8 @@ class NaverHotKeyword(BotPlugin):
         result = requests.get(self.RANK_URL)
         content = result.text
 
-        find_start_idx = content.find(SEARCH_START) + len(SEARCH_START)
-        find_end_idx = content.find(SEARCH_END) + len(SEARCH_END)
+        find_start_idx = content.find(self.SEARCH_START) + len(self.SEARCH_START)
+        find_end_idx = content.find(self.SEARCH_END) + len(self.SEARCH_END)
         search_result = content[find_start_idx:find_end_idx]
 
         jsondata = json.loads(search_result)
@@ -28,7 +28,7 @@ class NaverHotKeyword(BotPlugin):
             return rankText
 
     def callback_message(self, mess):
-        if mess.body.find('네이버실시간') != 1:
+        if mess.body.find('네이버실시간') != -1:
             result = self.temp_request()
 
             target = mess.to
