@@ -1,0 +1,9 @@
+[Core]
+Name = NaverHotKeyword
+Module = naverhotkeyword
+
+[Documentation]
+Description = Naver realtime HOT Keyword Service
+
+[Python]
+Version = 3
