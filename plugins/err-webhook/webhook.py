@@ -36,8 +36,8 @@ class WebHook(BotPlugin):
     def notification(self, payload):
         self.send(self.build_identifier(self._user_id), 'Commit on ' + payload['repository']['name'] + ' - ' + payload['compare'] + '\nCurrent Branch: ' + payload['ref'])
         # self.log.info('git pull start=== ' + os.getcwd())
-        # os.system('git checkout master')
-        os.system('git pull')
+        os.system('git checkout master')
+        os.system('git pull origin master')
         self.send(self.build_identifier(self._user_id), 'Please order to /restart bot!')
         # self._is_pushed = True
 
