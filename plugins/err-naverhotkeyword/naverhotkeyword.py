@@ -28,7 +28,7 @@ class NaverHotKeyword(BotPlugin):
             return rankText
 
     def callback_message(self, mess):
-        if mess.body.find('네이버실시간') != 1:
+        if mess.body.find('네이버실시간') != -1:
             result = self.temp_request()
 
             target = mess.to
