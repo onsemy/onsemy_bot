@@ -88,7 +88,7 @@ BOT_ADMIN_ID = 123456789 # Your Telegram ID(num) -> /whoami
   + 근근늬우스
 * Android Game Ranking
 * Torrent Job (only oNsemy)
-* 네이버실시간 (contribute by [@goldface](https://github.com/goldface)
+* 네이버실시간 (contribute by [@goldface](https://github.com/goldface))
 
 # Working Features
 
