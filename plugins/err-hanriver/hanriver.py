@@ -17,7 +17,8 @@ class HanRiver(BotPlugin):
                 mess.body.find('자살') != -1 or \
                 mess.body.find('주식') != -1 or \
                 mess.body.find('부동산') != -1 or \
-                mess.body.find('코인') != -1:
+                mess.body.find('코인') != -1 or \
+                mess.body.find('가즈아') != -1:
             result = self.temp_request()
 
             target = mess.to
