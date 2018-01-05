@@ -1,0 +1,9 @@
+[Core]
+Name = Currency
+Module = currency
+
+[Documentation]
+Description = 가상화폐 거래정보
+
+[Python]
+Version = 3
