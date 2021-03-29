@@ -17,7 +17,7 @@ Jinja2==2.9.6
 Markdown==2.6.8
 MarkupSafe==1.0
 pycparser==2.18
-Pygments==2.2.0
+Pygments==2.7.4
 pygments-markdown-lexer==0.1.0.dev39
 pyOpenSSL==17.2.0
 python-qbittorrent==0.3.1
